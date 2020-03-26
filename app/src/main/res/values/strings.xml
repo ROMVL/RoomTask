@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Room Task</string>
+
+    <string name="departments">Departments</string>
+    <string name="users">Users</string>
+
+    <string name="create">Create</string>
+    <string name="delete">Delete</string>
+    <string name="update">Update</string>
+
+    <string name="create_department">Create Department</string>
+    <string name="update_department">Update Department</string>
+    <string name="name">Name</string>
+    <string name="description">Description</string>
+    <string name="done">done</string>
+
+</resources>

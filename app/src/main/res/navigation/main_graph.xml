@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/departmentListFragment">
+
+    <fragment
+        android:id="@+id/departmentListFragment"
+        android:name="ua.romanik.roomtask.presentation.ui.fragment.department.list.DepartmentListFragment"
+        android:label="fragment_department_list"
+        tools:layout="@layout/fragment_department_list" >
+        <action
+            android:id="@+id/action_departmentListFragment_to_createDepartmentFragment"
+            app:destination="@id/createDepartmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/usersListFragment"
+        android:name="ua.romanik.roomtask.presentation.ui.fragment.user.list.UsersListFragment"
+        android:label="fragment_users_list"
+        tools:layout="@layout/fragment_users_list" />
+    <fragment
+        android:id="@+id/createDepartmentFragment"
+        android:name="ua.romanik.roomtask.presentation.ui.fragment.department.create.CreateDepartmentFragment"
+        android:label="fragment_create_department"
+        tools:layout="@layout/fragment_create_department" >
+        <argument
+            android:name="navigation"
+            app:argType="ua.romanik.roomtask.presentation.base.navigationevent.BaseNavigation" />
+    </fragment>
+</navigation>
