@@ -15,11 +15,11 @@ abstract class DepartmentDao {
     @Query("SELECT * FROM DepartmentEntity")
     abstract fun fetchAllDepartments(): Flow<List<DepartmentEntity>>
 
-    @Query("SELECT * FROM DepartmentEntity WHERE id = :departmentId")
+    @Query("SELECT * FROM DepartmentEntity WHERE id_department = :departmentId")
     abstract fun fetchDepartmentById(departmentId: Long): Flow<DepartmentEntity>
 
     @Transaction
-    @Query("SELECT * FROM DepartmentEntity WHERE id = :departmentId")
+    @Query("SELECT * FROM DepartmentEntity WHERE id_department = :departmentId")
     abstract fun fetchDepartmentByIdWithStuff(departmentId: Long): Flow<DepartmentWithStaff>
 
     @Insert

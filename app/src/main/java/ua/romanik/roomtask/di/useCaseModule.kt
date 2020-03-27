@@ -12,4 +12,8 @@ val useCaseModule = module {
     single<DeleteUserUseCase> { DeleteUserUseCaseImpl(get()) }
     single<CreateDepartmentUseCase> { CreateDepartmentUseCaseImpl(get()) }
     single<UpdateDepartmentUseCase> { UpdateDepartmentUseCaseImpl(get()) }
+    single<FetchDepartmentByIdWithStuff> { FetchDepartmentByIdWithStuffImpl(get()) }
+    single<FetchUserDetailsByIdUseCase> { FetchUserDetailsByIdUseCaseImpl(get()) }
+    single<CreateUserUseCase> { CreateUserUseCaseImpl(get()) }
+    single<UpdateUserUseCase> { UpdateUserUseCaseImpl(get()) }
 }

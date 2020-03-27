@@ -20,17 +20,21 @@ class UsersListViewModel(
         get() = _users
 
     fun onClickCreate() {
-        _navigationLiveEvent.value = Event(UserNavigation.CreateDepartment)
+        _navigationLiveEvent.value = Event(UserNavigation.CreateUser)
     }
 
     fun onClickUpdate(userDomainModel: UserDomainModel) {
-        _navigationLiveEvent.value = Event(UserNavigation.UpdateDepartment(userDomainModel))
+        _navigationLiveEvent.value = Event(UserNavigation.UpdateUser(userDomainModel))
     }
 
     fun onClickDelete(userDomainModel: UserDomainModel) {
         viewModelScopeWithErrorHandler.launch {
             deleteUserUseCase.execute(userDomainModel)
         }
+    }
+
+    fun onClickUser(userDomainModel: UserDomainModel) {
+        _navigationLiveEvent.value = Event(UserNavigation.Details(userDomainModel.id))
     }
 
 }

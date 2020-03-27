@@ -5,7 +5,7 @@ import kotlinx.coroutines.withContext
 import ua.romanik.roomtask.data.db.entity.department.DepartmentEntity
 import ua.romanik.roomtask.data.db.entity.department.DepartmentWithStaff
 import ua.romanik.roomtask.domain.model.department.DepartmentDomainModel
-import ua.romanik.roomtask.domain.model.department.DepartmentWithStuffModel
+import ua.romanik.roomtask.domain.model.department.DepartmentWithStuffDomainModel
 
 class DepartmentMapper(
     private val userMapper: UserMapper
@@ -29,13 +29,25 @@ class DepartmentMapper(
         }
     }
 
-    suspend fun mapDepartmentWithStuffEntityToDomainModel(departmentWithStaff: DepartmentWithStaff): DepartmentWithStuffModel {
+    suspend fun mapDepartmentWithStuffEntityToDomainModel(departmentWithStaff: DepartmentWithStaff): DepartmentWithStuffDomainModel {
         return withContext(Dispatchers.Default) {
-            DepartmentWithStuffModel(
+            DepartmentWithStuffDomainModel(
                 id = departmentWithStaff.departmentEntity.id,
                 name = departmentWithStaff.departmentEntity.name,
                 description = departmentWithStaff.departmentEntity.description,
                 users = userMapper.mapListUserWithInfoEntityToDomainModel(departmentWithStaff.userEntities)
+            )
+        }
+    }
+
+    suspend fun mapDepartmentWithStuffDomainModelToDepartmentDomainModel(
+        departmentWithStuffDomainModel: DepartmentWithStuffDomainModel
+    ): DepartmentDomainModel {
+        return withContext(Dispatchers.Default) {
+            DepartmentDomainModel(
+                id = departmentWithStuffDomainModel.id,
+                name = departmentWithStuffDomainModel.name,
+                description = departmentWithStuffDomainModel.description
             )
         }
     }

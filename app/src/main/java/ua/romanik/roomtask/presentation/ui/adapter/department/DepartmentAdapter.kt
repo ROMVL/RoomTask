@@ -14,6 +14,7 @@ import ua.romanik.roomtask.domain.model.department.DepartmentDomainModel
 import ua.romanik.roomtask.presentation.base.initText
 
 class DepartmentAdapter(
+    private val itemClickListener: (DepartmentDomainModel) -> Unit,
     private val itemDeleteClickListener: (DepartmentDomainModel) -> Unit,
     private val itemUpdateClickListener: (DepartmentDomainModel) -> Unit
 ) : ListAdapter<DepartmentDomainModel, DepartmentAdapter.DepartmentViewHolder>(
@@ -48,6 +49,7 @@ class DepartmentAdapter(
     inner class DepartmentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun onBind(departmentDomainModel: DepartmentDomainModel) {
             with(itemView) {
+                setOnClickListener { itemClickListener(departmentDomainModel) }
                 tvId.initText(departmentDomainModel.id)
                 tvName.initText(departmentDomainModel.name)
                 tvDescription.initText(departmentDomainModel.description)

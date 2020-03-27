@@ -6,6 +6,7 @@ import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
+import ua.romanik.roomtask.presentation.base.hideKeyboard
 import ua.romanik.roomtask.presentation.base.navigationevent.BaseNavigation
 import ua.romanik.roomtask.presentation.base.viewmodel.BaseViewModel
 
@@ -34,6 +35,11 @@ abstract class BaseFragment<T : BaseViewModel>(@LayoutRes val layout: Int) : Fra
                 Observer { handleLoadingStateEvent(it.content) }
             )
         }
+    }
+
+    override fun onPause() {
+        hideKeyboard()
+        super.onPause()
     }
 
     protected fun showError(message: String) {

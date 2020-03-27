@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.Flow
 import ua.romanik.roomtask.data.db.entity.user.UserEntity
 import ua.romanik.roomtask.data.db.entity.user.UserEntityWithInfo
 import ua.romanik.roomtask.data.db.entity.user.UserInfoEntity
+import ua.romanik.roomtask.data.db.entity.user.UserWithDepartment
 
 @Dao
 abstract class UserDao {
@@ -27,8 +28,12 @@ abstract class UserDao {
     abstract fun fetchUsers(): Flow<List<UserEntityWithInfo>>
 
     @Transaction
-    @Query("SELECT * FROM UserEntity WHERE id = :userId")
+    @Query("SELECT * FROM UserEntity WHERE id_user = :userId")
     abstract fun fetchUserById(userId: Long): Flow<UserEntityWithInfo>
+
+    @Transaction
+    @Query("SELECT * FROM UserEntity INNER JOIN DepartmentEntity ON UserEntity.departmentId = DepartmentEntity.id_department WHERE UserEntity.id_user = :userId")
+    abstract fun fetchUserWithDepartmentById(userId: Long): Flow<UserWithDepartment>
 
     @Transaction
     @Update
@@ -56,7 +61,6 @@ abstract class UserDao {
     @Transaction
     @Delete
     suspend fun delete(userEntityWithInfo: UserEntityWithInfo) {
-        delete(userEntityWithInfo.userInfoEntity)
         delete(userEntityWithInfo.userEntity)
     }
 

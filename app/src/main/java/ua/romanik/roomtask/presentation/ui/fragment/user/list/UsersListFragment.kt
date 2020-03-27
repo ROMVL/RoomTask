@@ -5,6 +5,7 @@ import android.view.Gravity
 import android.view.View
 import android.widget.PopupMenu
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_users_list.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -22,7 +23,13 @@ import ua.romanik.roomtask.presentation.ui.fragment.user.navigation.UserNavigati
 class UsersListFragment : BaseFragment<UsersListViewModel>(R.layout.fragment_users_list) {
 
     override val viewModel by viewModel<UsersListViewModel>()
-    private val userAdapter by lazy { UserAdapter(::updateUserClickHandler, ::updateDeleteClickHandler) }
+    private val userAdapter by lazy {
+        UserAdapter(
+            ::itemUserClickHandler,
+            ::updateUserClickHandler,
+            ::updateDeleteClickHandler
+        )
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -49,11 +56,26 @@ class UsersListFragment : BaseFragment<UsersListViewModel>(R.layout.fragment_use
 
     override fun <T : BaseNavigation> handleNavigationEvent(navigationEvent: T) {
         when (navigationEvent) {
-            UserNavigation.CreateDepartment -> {
-
+            is UserNavigation.CreateUser -> {
+                findNavController().navigate(
+                    UsersListFragmentDirections.actionUsersListFragmentToCreateUserFragment(
+                        navigationEvent
+                    )
+                )
             }
-            is UserNavigation.UpdateDepartment -> {
-
+            is UserNavigation.UpdateUser -> {
+                findNavController().navigate(
+                    UsersListFragmentDirections.actionUsersListFragmentToCreateUserFragment(
+                        navigationEvent
+                    )
+                )
+            }
+            is UserNavigation.Details -> {
+                findNavController().navigate(
+                    UsersListFragmentDirections.actionUsersListFragmentToUserDetailsFragment(
+                        navigationEvent.userId
+                    )
+                )
             }
         }
     }
@@ -63,7 +85,7 @@ class UsersListFragment : BaseFragment<UsersListViewModel>(R.layout.fragment_use
             gravity = Gravity.END
             menuInflater.inflate(R.menu.menu_users, menu)
             setOnMenuItemClickListener {
-                when(it.itemId) {
+                when (it.itemId) {
                     R.id.itemCreate -> {
                         viewModel.onClickCreate()
                         true
@@ -87,6 +109,10 @@ class UsersListFragment : BaseFragment<UsersListViewModel>(R.layout.fragment_use
 
     private fun updateDeleteClickHandler(user: UserDomainModel) {
         viewModel.onClickDelete(user)
+    }
+
+    private fun itemUserClickHandler(user: UserDomainModel) {
+        viewModel.onClickUser(user)
     }
 
 }

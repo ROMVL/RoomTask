@@ -13,5 +13,12 @@
     <string name="name">Name</string>
     <string name="description">Description</string>
     <string name="done">done</string>
+    <string name="details_department">Details Department</string>
+    <string name="details_user">Details User</string>
+    <string name="user">User</string>
+    <string name="department">Department</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="address">Address</string>
 
 </resources>

@@ -19,15 +19,18 @@ import ua.romanik.roomtask.presentation.base.fragment.BaseFragment
 import ua.romanik.roomtask.presentation.base.initText
 import ua.romanik.roomtask.presentation.base.navigationevent.BaseNavigation
 import ua.romanik.roomtask.presentation.base.visible
+import ua.romanik.roomtask.presentation.base.visibleIf
 import ua.romanik.roomtask.presentation.ui.adapter.department.DepartmentAdapter
 import ua.romanik.roomtask.presentation.ui.fragment.department.navigation.DepartmentNavigation
 
 @ExperimentalCoroutinesApi
-class DepartmentListFragment : BaseFragment<DepartmentListViewModel>(R.layout.fragment_department_list) {
+class DepartmentListFragment :
+    BaseFragment<DepartmentListViewModel>(R.layout.fragment_department_list) {
 
     override val viewModel by viewModel<DepartmentListViewModel>()
     private val departmentAdapter by lazy {
         DepartmentAdapter(
+            ::onClickItemDepartmentHandler,
             ::onClickDeleteDepartmentHandler,
             ::onClickUpdateDepartmentHandler
         )
@@ -49,9 +52,30 @@ class DepartmentListFragment : BaseFragment<DepartmentListViewModel>(R.layout.fr
     }
 
     override fun <T : BaseNavigation> handleNavigationEvent(navigationEvent: T) {
-        findNavController().navigate(
-            DepartmentListFragmentDirections.actionDepartmentListFragmentToCreateDepartmentFragment(navigationEvent)
-        )
+        when (navigationEvent) {
+            is DepartmentNavigation.Details -> {
+                findNavController().navigate(
+                    DepartmentListFragmentDirections.actionDepartmentListFragmentToDepartmentDetailsFragment(
+                        navigationEvent.departmentId
+                    )
+                )
+            }
+            DepartmentNavigation.CreateDepartment -> {
+                findNavController().navigate(
+                    DepartmentListFragmentDirections.actionDepartmentListFragmentToCreateDepartmentFragment(
+                        navigationEvent
+                    )
+                )
+            }
+            is DepartmentNavigation.UpdateDepartment -> {
+                findNavController().navigate(
+                    DepartmentListFragmentDirections.actionDepartmentListFragmentToCreateDepartmentFragment(
+                        navigationEvent
+                    )
+                )
+            }
+        }
+
     }
 
     private fun initRv() {
@@ -69,12 +93,16 @@ class DepartmentListFragment : BaseFragment<DepartmentListViewModel>(R.layout.fr
         }
     }
 
+    override fun handleLoadingStateEvent(state: Boolean) {
+        progressBar.visibleIf { state }
+    }
+
     private fun showPopupMenu(anchor: View) {
         PopupMenu(anchor.context, anchor).apply {
             gravity = Gravity.END
             menuInflater.inflate(R.menu.menu_departments, menu)
             setOnMenuItemClickListener {
-                when(it.itemId) {
+                when (it.itemId) {
                     R.id.itemCreate -> {
                         viewModel.onClickCreate()
                         true
@@ -91,6 +119,10 @@ class DepartmentListFragment : BaseFragment<DepartmentListViewModel>(R.layout.fr
 
     private fun onClickDeleteDepartmentHandler(departmentDomainModel: DepartmentDomainModel) {
         viewModel.onClickDeleteDepartment(departmentDomainModel)
+    }
+
+    private fun onClickItemDepartmentHandler(departmentDomainModel: DepartmentDomainModel) {
+        viewModel.onClickDepartmentItem(departmentDomainModel)
     }
 
 }

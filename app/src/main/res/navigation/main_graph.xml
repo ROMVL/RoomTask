@@ -13,12 +13,22 @@
         <action
             android:id="@+id/action_departmentListFragment_to_createDepartmentFragment"
             app:destination="@id/createDepartmentFragment" />
+        <action
+            android:id="@+id/action_departmentListFragment_to_departmentDetailsFragment"
+            app:destination="@id/departmentDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/usersListFragment"
         android:name="ua.romanik.roomtask.presentation.ui.fragment.user.list.UsersListFragment"
         android:label="fragment_users_list"
-        tools:layout="@layout/fragment_users_list" />
+        tools:layout="@layout/fragment_users_list" >
+        <action
+            android:id="@+id/action_usersListFragment_to_userDetailsFragment"
+            app:destination="@id/userDetailsFragment" />
+        <action
+            android:id="@+id/action_usersListFragment_to_createUserFragment"
+            app:destination="@id/createUserFragment" />
+    </fragment>
     <fragment
         android:id="@+id/createDepartmentFragment"
         android:name="ua.romanik.roomtask.presentation.ui.fragment.department.create.CreateDepartmentFragment"
@@ -27,5 +37,46 @@
         <argument
             android:name="navigation"
             app:argType="ua.romanik.roomtask.presentation.base.navigationevent.BaseNavigation" />
+    </fragment>
+    <fragment
+        android:id="@+id/departmentDetailsFragment"
+        android:name="ua.romanik.roomtask.presentation.ui.fragment.department.details.DepartmentDetailsFragment"
+        android:label="fragment_department_details"
+        tools:layout="@layout/fragment_department_details" >
+        <argument
+            android:name="departmentId"
+            app:argType="long"
+            android:defaultValue="-1L" />
+        <action
+            android:id="@+id/action_departmentDetailsFragment_to_createDepartmentFragment"
+            app:destination="@id/createDepartmentFragment" />
+        <action
+            android:id="@+id/action_departmentDetailsFragment_to_userDetailsFragment"
+            app:destination="@id/userDetailsFragment" />
+        <action
+            android:id="@+id/action_departmentDetailsFragment_to_createUserFragment"
+            app:destination="@id/createUserFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userDetailsFragment"
+        android:name="ua.romanik.roomtask.presentation.ui.fragment.user.details.UserDetailsFragment"
+        android:label="fragment_user_details"
+        tools:layout="@layout/fragment_user_details" >
+        <argument
+            android:name="userId"
+            app:argType="long"
+            android:defaultValue="-1L" />
+        <action
+            android:id="@+id/action_userDetailsFragment_to_createUserFragment"
+            app:destination="@id/createUserFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createUserFragment"
+        android:name="ua.romanik.roomtask.presentation.ui.fragment.user.create.CreateUserFragment"
+        android:label="fragment_create_user"
+        tools:layout="@layout/fragment_create_user" >
+        <argument
+            android:name="navigationEvent"
+            app:argType="ua.romanik.roomtask.presentation.ui.fragment.user.navigation.UserNavigation" />
     </fragment>
 </navigation>

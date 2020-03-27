@@ -14,6 +14,7 @@ import ua.romanik.roomtask.domain.model.user.UserDomainModel
 import ua.romanik.roomtask.presentation.base.initText
 
 class UserAdapter(
+    private val itemClickListener: (UserDomainModel) -> Unit,
     private val itemUpdateClickListener: (UserDomainModel) -> Unit,
     private val itemDeleteClickListener: (UserDomainModel) -> Unit
 ) : ListAdapter<UserDomainModel, UserAdapter.UserViewHolder>(userDiffUtil) {
@@ -49,6 +50,7 @@ class UserAdapter(
     inner class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun onBind(userDomainModel: UserDomainModel) {
             with(itemView) {
+                setOnClickListener { itemClickListener(userDomainModel) }
                 tvId.initText(userDomainModel.id)
                 tvEmail.initText(userDomainModel.email)
                 tvName.initText(userDomainModel.name)

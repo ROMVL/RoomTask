@@ -9,4 +9,5 @@ sealed class DepartmentNavigation : BaseNavigation() {
     @Parcelize object CreateDepartment : DepartmentNavigation()
     @Parcelize data class UpdateDepartment(val departmentDomainModel: DepartmentDomainModel) : DepartmentNavigation()
     @Parcelize object Back : DepartmentNavigation()
+    @Parcelize data class Details(val departmentId: Long) : DepartmentNavigation()
 }

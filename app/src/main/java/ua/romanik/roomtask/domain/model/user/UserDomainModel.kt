@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class UserDomainModel(
-    val id: Long,
+    val id: Long = 0L,
     val departmentId: Long,
     val email: String,
     val name: String,

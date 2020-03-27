@@ -4,9 +4,10 @@ import android.os.Parcelable
 import androidx.room.Embedded
 import androidx.room.Relation
 import kotlinx.android.parcel.Parcelize
+import ua.romanik.roomtask.data.db.entity.department.DepartmentEntity
 
 @Parcelize
-data class UserEntityWithInfo(
-    @Embedded val userEntity: UserEntity,
-    @Relation(parentColumn = "id_user", entityColumn = "userId") val userInfoEntity: UserInfoEntity
+data class UserWithDepartment(
+    @Embedded val userEntity: UserEntityWithInfo,
+    @Embedded val departmentEntity: DepartmentEntity
 ) : Parcelable

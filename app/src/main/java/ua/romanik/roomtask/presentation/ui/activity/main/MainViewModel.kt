@@ -3,6 +3,7 @@ package ua.romanik.roomtask.presentation.ui.activity.main
 import android.util.Log
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -15,6 +16,7 @@ import ua.romanik.roomtask.data.db.entity.user.UserEntityWithInfo
 import ua.romanik.roomtask.data.db.entity.user.UserInfoEntity
 import ua.romanik.roomtask.presentation.base.viewmodel.BaseViewModel
 
+@ExperimentalCoroutinesApi
 class MainViewModel(
     private val userDao: UserDao,
     private val departmentDao: DepartmentDao
