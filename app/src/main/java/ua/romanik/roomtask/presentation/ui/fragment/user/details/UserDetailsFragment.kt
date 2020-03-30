@@ -38,7 +38,6 @@ class UserDetailsFragment : BaseFragment<UserDetailsViewModel>(R.layout.fragment
                 Observer {
                     tvUserName.initText(it.userDomainModel.name)
                     tvEmail.initText(it.userDomainModel.email)
-                    tvAddress.initText(it.userDomainModel.address)
                     tvPhone.initText(it.userDomainModel.phone)
                     tvDepartmentName.initText(it.departmentDomainModel.name)
                     tvDescription.initText(it.departmentDomainModel.description)

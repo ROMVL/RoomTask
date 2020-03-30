@@ -9,6 +9,5 @@ data class UserDomainModel(
     val departmentId: Long,
     val email: String,
     val name: String,
-    val address: String,
     val phone: String
 ) : Parcelable

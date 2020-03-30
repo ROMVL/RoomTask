@@ -10,5 +10,9 @@ import ua.romanik.roomtask.data.db.entity.user.UserEntityWithInfo
 @Parcelize
 data class DepartmentWithStaff(
     @Embedded val departmentEntity: DepartmentEntity,
-    @Relation(parentColumn = "id_department", entityColumn = "departmentId", entity = UserEntity::class) val userEntities: List<UserEntityWithInfo>
+    @Relation(
+        parentColumn = "id_department",
+        entityColumn = "departmentId",
+        entity = UserEntity::class
+    ) val userEntities: List<UserEntityWithInfo>
 ) : Parcelable

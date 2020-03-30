@@ -39,7 +39,6 @@ class CreateUserFragment : BaseFragment<CreateUserViewModel>(R.layout.fragment_c
                     viewModel.onClickSaveUser(
                         etName.text.toString(),
                         etEmail.text.toString(),
-                        etAddress.text.toString(),
                         etPhone.text.toString(),
                         spinnerDepartment.selectedItemPosition
                     )
@@ -50,14 +49,12 @@ class CreateUserFragment : BaseFragment<CreateUserViewModel>(R.layout.fragment_c
                 (args.navigationEvent as UserNavigation.UpdateUser).userDomainModel.let { userModel ->
                     etName.initText(userModel.name)
                     etEmail.initText(userModel.email)
-                    etAddress.initText(userModel.address)
                     etPhone.initText(userModel.phone)
                     btnDone.setOnClickListener {
                         viewModel.onClickUpdateUser(
                             userModel.id,
                             etName.text.toString(),
                             etEmail.text.toString(),
-                            etAddress.text.toString(),
                             etPhone.text.toString(),
                             spinnerDepartment.selectedItemPosition
                         )

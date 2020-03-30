@@ -32,7 +32,10 @@ abstract class UserDao {
     abstract fun fetchUserById(userId: Long): Flow<UserEntityWithInfo>
 
     @Transaction
-    @Query("SELECT * FROM UserEntity INNER JOIN DepartmentEntity ON UserEntity.departmentId = DepartmentEntity.id_department WHERE UserEntity.id_user = :userId")
+    @Query("SELECT * FROM UserEntity " +
+            "INNER JOIN DepartmentEntity " +
+            "ON UserEntity.departmentId = DepartmentEntity.id_department " +
+            "WHERE UserEntity.id_user = :userId")
     abstract fun fetchUserWithDepartmentById(userId: Long): Flow<UserWithDepartment>
 
     @Transaction

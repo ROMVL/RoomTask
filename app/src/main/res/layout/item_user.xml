@@ -39,23 +39,12 @@
             android:id="@+id/tvEmail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/tvAddress"
+            app:layout_constraintBottom_toTopOf="@+id/tvPhone"
             app:layout_constraintEnd_toStartOf="@id/btnMenu"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvName"
             tools:text="Department Description" />
-
-        <TextView
-            android:id="@+id/tvAddress"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/tvPhone"
-            app:layout_constraintEnd_toStartOf="@id/btnMenu"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvEmail"
-            tools:text="Address" />
 
         <TextView
             android:id="@+id/tvPhone"
@@ -65,7 +54,7 @@
             app:layout_constraintEnd_toStartOf="@id/btnMenu"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAddress"
+            app:layout_constraintTop_toBottomOf="@+id/tvEmail"
             tools:text="@android:string/emptyPhoneNumber" />
 
         <ImageView

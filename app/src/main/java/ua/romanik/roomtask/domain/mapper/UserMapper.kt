@@ -24,7 +24,6 @@ class UserMapper {
                 departmentId = userEntityWithInfo.userEntity.departmentId,
                 email = userEntityWithInfo.userEntity.email,
                 name = userEntityWithInfo.userInfoEntity.name,
-                address = userEntityWithInfo.userInfoEntity.address,
                 phone = userEntityWithInfo.userInfoEntity.phone
             )
         }
@@ -42,7 +41,6 @@ class UserMapper {
                     userDomainModel.id,
                     userDomainModel.id,
                     userDomainModel.name,
-                    userDomainModel.address,
                     userDomainModel.phone
                 )
             )

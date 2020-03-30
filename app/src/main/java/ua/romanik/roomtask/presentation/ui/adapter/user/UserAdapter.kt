@@ -31,7 +31,6 @@ class UserAdapter(
                 newItem: UserDomainModel
             ): Boolean = oldItem.name == newItem.name
                     && oldItem.email == newItem.email
-                    && oldItem.address == newItem.address
                     && oldItem.phone == newItem.phone
 
         }
@@ -54,7 +53,6 @@ class UserAdapter(
                 tvId.initText(userDomainModel.id)
                 tvEmail.initText(userDomainModel.email)
                 tvName.initText(userDomainModel.name)
-                tvAddress.initText(userDomainModel.address)
                 tvPhone.initText(userDomainModel.phone)
                 btnMenu.setOnClickListener { showPopupMenu(it, userDomainModel) }
             }

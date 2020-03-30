@@ -2,8 +2,6 @@ package ua.romanik.roomtask.presentation.ui.fragment.user.create
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
-import androidx.lifecycle.map
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import ua.romanik.roomtask.domain.model.department.DepartmentDomainModel
 import ua.romanik.roomtask.domain.model.user.UserDomainModel
@@ -15,7 +13,7 @@ import ua.romanik.roomtask.presentation.base.viewmodel.BaseViewModel
 import ua.romanik.roomtask.presentation.ui.fragment.user.navigation.UserNavigation
 
 class CreateUserViewModel(
-    private val fetchDepartmentsUseCase: FetchDepartmentsUseCase,
+    fetchDepartmentsUseCase: FetchDepartmentsUseCase,
     private val createUserUseCase: CreateUserUseCase,
     private val updateUserUseCase: UpdateUserUseCase
 ) : BaseViewModel() {
@@ -28,7 +26,6 @@ class CreateUserViewModel(
     fun onClickSaveUser(
         name: String,
         email: String,
-        address: String,
         phone: String,
         selectedDepartmentPosition: Int
     ) {
@@ -39,7 +36,6 @@ class CreateUserViewModel(
                     UserDomainModel(
                         name = name,
                         email = email,
-                        address = address,
                         phone = phone,
                         departmentId = selectedDepartment.id
                     )
@@ -53,7 +49,6 @@ class CreateUserViewModel(
         userId: Long,
         name: String,
         email: String,
-        address: String,
         phone: String,
         selectedDepartmentPosition: Int
     ) {
@@ -65,7 +60,6 @@ class CreateUserViewModel(
                         id = userId,
                         name = name,
                         email = email,
-                        address = address,
                         phone = phone,
                         departmentId = selectedDepartment.id
                     )

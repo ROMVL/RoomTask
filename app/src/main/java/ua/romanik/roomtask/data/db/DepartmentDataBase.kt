@@ -2,6 +2,8 @@ package ua.romanik.roomtask.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import ua.romanik.roomtask.data.db.dao.DepartmentDao
 import ua.romanik.roomtask.data.db.dao.UserDao
 import ua.romanik.roomtask.data.db.entity.department.DepartmentEntity
@@ -17,8 +19,19 @@ import ua.romanik.roomtask.data.db.entity.user.UserInfoEntity
 abstract class DepartmentDataBase : RoomDatabase() {
 
     companion object {
-        const val DB_VERSION = 1
+        const val DB_VERSION = 2
         const val DB_NAME = "department_data_base"
+
+        val MIGRATION_1_2 = object : Migration(1, 2) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                with(database) {
+                    execSQL("CREATE TABLE new_user_info (userInfoId INTEGER NOT NULL, userId INTEGER NOT NULL, name_user TEXT NOT NULL, phone TEXT NOT NULL, PRIMARY KEY(userInfoId))")
+                    execSQL("INSERT INTO new_user_info (userInfoId, userId, name_user, phone) SELECT userInfoId, userId, name_user, phone FROM UserInfoEntity")
+                    execSQL("DROP TABLE UserInfoEntity")
+                    execSQL("ALTER TABLE new_user_info RENAME TO UserInfoEntity")
+                }
+            }
+        }
     }
 
     abstract fun userDao(): UserDao
