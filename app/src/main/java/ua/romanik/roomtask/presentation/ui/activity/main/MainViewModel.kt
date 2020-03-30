@@ -30,12 +30,12 @@ class MainViewModel(
         viewModelScopeWithErrorHandler.launch {
             createDepartments().forEach { departmentId ->
                 val userEntity = UserEntity(0L, departmentId, "vrom@gmail.com")
-                val userInfoEntity = UserInfoEntity(0L, 0L, "Vladyslav", "380988577995")
+                val userInfoEntity = UserInfoEntity(0L, 0L, "Vladyslav", 380988577995L)
                 val userEntityWithInfo = UserEntityWithInfo(userEntity, userInfoEntity)
 
                 val userEntity2 = UserEntity(0L, departmentId, "romanik@gmail.com")
                 val userInfoEntity2 =
-                    UserInfoEntity(0L, 0L, "Vladyslav",  "380988577995")
+                    UserInfoEntity(0L, 0L, "Vladyslav",  380988577995L)
                 val userEntityWithInfo2 = UserEntityWithInfo(userEntity2, userInfoEntity2)
 
                 userDao.insert(userEntityWithInfo)

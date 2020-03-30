@@ -36,7 +36,7 @@ class CreateUserViewModel(
                     UserDomainModel(
                         name = name,
                         email = email,
-                        phone = phone,
+                        phone = phone.toLong(),
                         departmentId = selectedDepartment.id
                     )
                 )
@@ -60,7 +60,7 @@ class CreateUserViewModel(
                         id = userId,
                         name = name,
                         email = email,
-                        phone = phone,
+                        phone = phone.toLong(),
                         departmentId = selectedDepartment.id
                     )
                 )

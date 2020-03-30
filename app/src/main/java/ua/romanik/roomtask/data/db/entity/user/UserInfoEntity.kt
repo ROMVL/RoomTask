@@ -13,5 +13,5 @@ data class UserInfoEntity(
     @PrimaryKey(autoGenerate = true) val userInfoId: Long,
     val userId: Long,
     @ColumnInfo(name = "name_user")val name: String,
-    val phone: String
+    val phone: Long
 ) : Parcelable
