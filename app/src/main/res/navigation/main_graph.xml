@@ -79,4 +79,22 @@
             android:name="navigationEvent"
             app:argType="ua.romanik.roomtask.presentation.ui.fragment.user.navigation.UserNavigation" />
     </fragment>
+    <fragment
+        android:id="@+id/roomListFragment"
+        android:name="ua.romanik.roomtask.presentation.ui.fragment.room.list.RoomListFragment"
+        android:label="fragment_room_list"
+        tools:layout="@layout/fragment_room_list" >
+        <action
+            android:id="@+id/action_roomListFragment_to_createRoomFragment"
+            app:destination="@id/createRoomFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createRoomFragment"
+        android:name="ua.romanik.roomtask.presentation.ui.fragment.room.create.CreateRoomFragment"
+        android:label="fragment_create_room"
+        tools:layout="@layout/fragment_create_room" >
+        <argument
+            android:name="navigationEvent"
+            app:argType="ua.romanik.roomtask.presentation.ui.fragment.room.navigation.RoomNavigation" />
+    </fragment>
 </navigation>

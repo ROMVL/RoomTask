@@ -4,6 +4,7 @@ import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 import ua.romanik.roomtask.data.db.entity.department.DepartmentEntity
 import ua.romanik.roomtask.data.db.entity.department.DepartmentWithStaff
+import ua.romanik.roomtask.data.db.entity.department.DepartmentWithStuffAndRoom
 
 @Dao
 abstract class DepartmentDao {
@@ -21,6 +22,10 @@ abstract class DepartmentDao {
     @Transaction
     @Query("SELECT * FROM DepartmentEntity WHERE id_department = :departmentId")
     abstract fun fetchDepartmentByIdWithStuff(departmentId: Long): Flow<DepartmentWithStaff>
+
+    @Transaction
+    @Query("SELECT * FROM DepartmentEntity WHERE id_department = :departmentId")
+    abstract fun fetchDepartmentByIdWithStuffAndRoom(departmentId: Long): Flow<DepartmentWithStuffAndRoom>
 
     @Insert
     abstract suspend fun insert(departmentEntity: DepartmentEntity): Long

@@ -16,4 +16,8 @@ val useCaseModule = module {
     single<FetchUserDetailsByIdUseCase> { FetchUserDetailsByIdUseCaseImpl(get()) }
     single<CreateUserUseCase> { CreateUserUseCaseImpl(get()) }
     single<UpdateUserUseCase> { UpdateUserUseCaseImpl(get()) }
+    single<FetchRoomsUseCase> { FetchRoomsUseCaseImpl(get()) }
+    single<DeleteRoomUseCase> { DeleteRoomUseCaseImpl(get()) }
+    single<CreateRoomUseCase> { CreateRoomUseCaseImpl(get()) }
+    single<UpdateRoomUseCase> { UpdateRoomUseCaseImpl(get()) }
 }

@@ -11,4 +11,9 @@
         android:title="@string/users"
         android:icon="@drawable/ic_person"/>
 
+    <item
+        android:id="@+id/roomListFragment"
+        android:title="@string/rooms"
+        android:icon="@drawable/ic_room"/>
+
 </menu>

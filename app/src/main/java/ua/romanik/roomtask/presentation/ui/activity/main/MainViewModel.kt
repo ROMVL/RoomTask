@@ -9,8 +9,10 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import ua.romanik.roomtask.data.db.dao.DepartmentDao
+import ua.romanik.roomtask.data.db.dao.RoomDao
 import ua.romanik.roomtask.data.db.dao.UserDao
 import ua.romanik.roomtask.data.db.entity.department.DepartmentEntity
+import ua.romanik.roomtask.data.db.entity.room.RoomEntity
 import ua.romanik.roomtask.data.db.entity.user.UserEntity
 import ua.romanik.roomtask.data.db.entity.user.UserEntityWithInfo
 import ua.romanik.roomtask.data.db.entity.user.UserInfoEntity
@@ -19,7 +21,8 @@ import ua.romanik.roomtask.presentation.base.viewmodel.BaseViewModel
 @ExperimentalCoroutinesApi
 class MainViewModel(
     private val userDao: UserDao,
-    private val departmentDao: DepartmentDao
+    private val departmentDao: DepartmentDao,
+    private val roomDao: RoomDao
 ) : BaseViewModel() {
 
     init {
@@ -40,6 +43,10 @@ class MainViewModel(
 
                 userDao.insert(userEntityWithInfo)
                 userDao.insert(userEntityWithInfo2)
+            }
+
+            for (i in 0L..15L) {
+                roomDao.save(RoomEntity(0, i))
             }
             userDao.fetchUsers()
                 .onEach {

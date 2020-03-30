@@ -20,5 +20,8 @@
     <string name="email">Email</string>
     <string name="phone">Phone</string>
     <string name="address">Address</string>
+    <string name="rooms">Rooms</string>
+    <string name="create_room">Create Room</string>
+    <string name="update_room">Update Room</string>
 
 </resources>
