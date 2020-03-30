@@ -20,7 +20,7 @@ val viewModelModule = module {
     viewModel { MainViewModel(get(), get(), get()) }
     viewModel { DepartmentListViewModel(get(), get()) }
     viewModel { UsersListViewModel(get(), get()) }
-    viewModel { CreateDepartmentViewModel(get(), get()) }
+    viewModel { CreateDepartmentViewModel(get(), get(), get()) }
     viewModel { DepartmentDetailsViewModel(getProperty(DEPARTMENT_ID), get(), get(), get()) }
     viewModel { UserDetailsViewModel(getProperty(USER_ID), get(), get()) }
     viewModel { CreateUserViewModel(get(), get(), get()) }

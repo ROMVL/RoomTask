@@ -1,7 +1,9 @@
 package ua.romanik.roomtask.data.repository
 
+import kotlinx.coroutines.flow.Flow
 import ua.romanik.roomtask.data.db.dao.DepartmentDao
 import ua.romanik.roomtask.data.db.entity.department.DepartmentEntity
+import ua.romanik.roomtask.data.db.entity.department.DepartmentWithStuffAndRoom
 import ua.romanik.roomtask.domain.repository.DepartmentRepository
 
 class DepartmentRepositoryImpl(
@@ -15,6 +17,8 @@ class DepartmentRepositoryImpl(
     override fun fetchDepartmentsWithStuff() = departmentDao.fetchAllDepartmentsWithStuff()
 
     override fun fetchDepartmentByIdWithStuff(id: Long) = departmentDao.fetchDepartmentByIdWithStuff(id)
+
+    override fun fetchDepartmentByIdWithStuffAndRoom(id: Long) = departmentDao.fetchDepartmentByIdWithStuffAndRoom(id)
 
     override suspend fun saveDepartment(departmentEntity: DepartmentEntity) = departmentDao.insert(departmentEntity)
 

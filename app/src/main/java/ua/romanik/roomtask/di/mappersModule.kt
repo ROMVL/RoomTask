@@ -7,6 +7,6 @@ import ua.romanik.roomtask.domain.mapper.UserMapper
 
 val domainMapperModule = module {
     single { UserMapper() }
-    single { DepartmentMapper(get()) }
+    single { DepartmentMapper(get(), get()) }
     single { RoomMapper() }
 }

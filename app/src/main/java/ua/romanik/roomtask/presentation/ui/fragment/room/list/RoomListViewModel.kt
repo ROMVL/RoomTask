@@ -17,7 +17,7 @@ class RoomListViewModel(
 
     private val _rooms = fetchRoomsUseCase.execute().asLiveData(viewModelScopeWithErrorHandler.coroutineContext)
 
-    val rooms: LiveData<List<RoomDomainModel>> = _rooms
+    val rooms: LiveData<List<RoomDomainModel>> get() = _rooms
 
     fun onClickDeleteRoom(roomDomainModel: RoomDomainModel) {
         viewModelScopeWithErrorHandler.launch {

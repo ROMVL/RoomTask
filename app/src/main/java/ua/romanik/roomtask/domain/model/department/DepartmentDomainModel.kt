@@ -7,5 +7,6 @@ import kotlinx.android.parcel.Parcelize
 data class DepartmentDomainModel(
     val id: Long = 0L,
     val name: String,
-    val description: String
+    val description: String,
+    val roomId: Long = Long.MIN_VALUE
 ) : Parcelable

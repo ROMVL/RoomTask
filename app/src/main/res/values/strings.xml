@@ -23,5 +23,7 @@
     <string name="rooms">Rooms</string>
     <string name="create_room">Create Room</string>
     <string name="update_room">Update Room</string>
+    <string name="without_room">Without room</string>
+    <string name="department_room">Department room: </string>
 
 </resources>

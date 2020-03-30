@@ -62,6 +62,10 @@ class DepartmentDetailsFragment :
                 Observer {
                     tvName.initText(it.name)
                     tvDescription.initText(it.description)
+                    if (it.roomDomainModel.id == Long.MIN_VALUE)
+                        tvRoomNumber.initText(R.string.without_room)
+                    else
+                        tvRoomNumber.initText(it.roomDomainModel.number)
                     userAdapter.submitList(it.users)
                 }
             )

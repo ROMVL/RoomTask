@@ -2,9 +2,11 @@ package ua.romanik.roomtask.presentation.ui.fragment.department.details
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import org.koin.core.inject
 import ua.romanik.roomtask.domain.mapper.DepartmentMapper
+import ua.romanik.roomtask.domain.model.department.DepartmentWithStuffAndRoomDomainModel
 import ua.romanik.roomtask.domain.model.department.DepartmentWithStuffDomainModel
 import ua.romanik.roomtask.domain.model.user.UserDomainModel
 import ua.romanik.roomtask.domain.usecase.DeleteDepartmentUseCase
@@ -29,7 +31,7 @@ class DepartmentDetailsViewModel(
             .asLiveData(viewModelScopeWithErrorHandler.coroutineContext)
     }
 
-    val departmentWithStuff: LiveData<DepartmentWithStuffDomainModel> get() = _departmentWithStuff
+    val departmentWithStuff: LiveData<DepartmentWithStuffAndRoomDomainModel> get() = _departmentWithStuff
 
     fun onClickUpdate() {
         viewModelScopeWithErrorHandler.launch {
@@ -37,7 +39,7 @@ class DepartmentDetailsViewModel(
                 _navigationLiveEvent.value = Event(
                     DepartmentNavigation.UpdateDepartment(
                         departmentMapper
-                            .mapDepartmentWithStuffDomainModelToDepartmentDomainModel(
+                            .mapDepartmentWithStuffAndRoomDomainModelToDepartmentDomainModel(
                                 departmentWithStuffDomainModel
                             )
                     )
@@ -50,7 +52,7 @@ class DepartmentDetailsViewModel(
         viewModelScopeWithErrorHandler.launch {
             _departmentWithStuff.value?.let { departmentWithStuffDomainModel ->
                 deleteDepartmentUseCase.execute(
-                    departmentMapper.mapDepartmentWithStuffDomainModelToDepartmentDomainModel(
+                    departmentMapper.mapDepartmentWithStuffAndRoomDomainModelToDepartmentDomainModel(
                         departmentWithStuffDomainModel
                     )
                 )

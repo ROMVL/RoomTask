@@ -11,7 +11,7 @@ import ua.romanik.roomtask.data.db.entity.user.UserEntityWithInfo
 @Parcelize
 data class DepartmentWithStuffAndRoom(
     @Embedded val departmentEntity: DepartmentEntity,
-    @Relation(parentColumn = "roomId", entityColumn = "idRoom") val roomEntity: RoomEntity,
+    @Relation(parentColumn = "roomId", entityColumn = "idRoom") val roomEntity: RoomEntity? = null,
     @Relation(
         parentColumn = "id_department",
         entityColumn = "departmentId",

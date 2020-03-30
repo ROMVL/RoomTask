@@ -22,24 +22,26 @@ class DepartmentAdapter(
 ) {
 
     companion object {
-        private val departmentDiffCallback = object : DiffUtil.ItemCallback<DepartmentDomainModel>() {
-            override fun areItemsTheSame(
-                oldItem: DepartmentDomainModel,
-                newItem: DepartmentDomainModel
-            ): Boolean = oldItem.id == newItem.id
+        private val departmentDiffCallback =
+            object : DiffUtil.ItemCallback<DepartmentDomainModel>() {
+                override fun areItemsTheSame(
+                    oldItem: DepartmentDomainModel,
+                    newItem: DepartmentDomainModel
+                ): Boolean = oldItem.id == newItem.id
 
-            override fun areContentsTheSame(
-                oldItem: DepartmentDomainModel,
-                newItem: DepartmentDomainModel
-            ): Boolean = oldItem.name == newItem.name && oldItem.description == newItem.description
+                override fun areContentsTheSame(
+                    oldItem: DepartmentDomainModel,
+                    newItem: DepartmentDomainModel
+                ): Boolean =
+                    oldItem.name == newItem.name && oldItem.description == newItem.description
 
-        }
+            }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DepartmentViewHolder {
-       return DepartmentViewHolder(
-           LayoutInflater.from(parent.context).inflate(R.layout.item_department, parent, false)
-       )
+        return DepartmentViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_department, parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: DepartmentViewHolder, position: Int) {
@@ -62,7 +64,7 @@ class DepartmentAdapter(
                 gravity = Gravity.END
                 menuInflater.inflate(R.menu.menu_item, menu)
                 setOnMenuItemClickListener {
-                    when(it.itemId) {
+                    when (it.itemId) {
                         R.id.itemUpdate -> {
                             itemUpdateClickListener(departmentDomainModel)
                             true
