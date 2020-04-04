@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.map
 import org.koin.core.inject
 import ua.romanik.roomtask.domain.mapper.DepartmentMapper
 import ua.romanik.roomtask.domain.model.department.DepartmentWithStuffAndRoomDomainModel
-import ua.romanik.roomtask.domain.model.department.DepartmentWithStuffDomainModel
 import ua.romanik.roomtask.domain.repository.DepartmentRepository
 import ua.romanik.roomtask.domain.usecase.base.BaseUseCase
 

@@ -1,18 +1,15 @@
 package ua.romanik.roomtask.presentation.ui.fragment.department.list
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.PopupMenu
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_department_list.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.viewmodel.ext.android.viewModel
-
 import ua.romanik.roomtask.R
 import ua.romanik.roomtask.domain.model.department.DepartmentDomainModel
 import ua.romanik.roomtask.presentation.base.fragment.BaseFragment
@@ -21,6 +18,7 @@ import ua.romanik.roomtask.presentation.base.navigationevent.BaseNavigation
 import ua.romanik.roomtask.presentation.base.visible
 import ua.romanik.roomtask.presentation.base.visibleIf
 import ua.romanik.roomtask.presentation.ui.adapter.department.DepartmentAdapter
+import ua.romanik.roomtask.presentation.ui.common.PaddingItemDecorator
 import ua.romanik.roomtask.presentation.ui.fragment.department.navigation.DepartmentNavigation
 
 @ExperimentalCoroutinesApi
@@ -33,6 +31,14 @@ class DepartmentListFragment :
             ::onClickItemDepartmentHandler,
             ::onClickDeleteDepartmentHandler,
             ::onClickUpdateDepartmentHandler
+        )
+    }
+    private val departmentItemDecorator by lazy {
+        PaddingItemDecorator(
+            requireContext(),
+            R.dimen.department_item_margin_edge,
+            R.dimen.department_item_margin_inner,
+            R.dimen.department_item_margin_inner_opposite
         )
     }
 
@@ -80,8 +86,8 @@ class DepartmentListFragment :
 
     private fun initRv() {
         with(rvDepartments) {
-            layoutManager = LinearLayoutManager(requireContext())
             adapter = departmentAdapter
+            addItemDecoration(departmentItemDecorator)
         }
     }
 

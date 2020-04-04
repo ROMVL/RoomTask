@@ -1,6 +1,6 @@
 package ua.romanik.roomtask.presentation.base.livedata
 
-open class Event<out T>(val content: T) {
+open class Event<out T>(private val content: T) {
 
     var hasBeenHandled = false
         private set

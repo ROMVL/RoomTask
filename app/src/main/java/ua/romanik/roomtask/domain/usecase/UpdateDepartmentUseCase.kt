@@ -25,10 +25,9 @@ class UpdateDepartmentUseCaseImpl(
     }
 
     override suspend fun execute() = withContext(Dispatchers.IO) {
-        departmentRepository
-            .updateDepartment(
-                departmentMapper.mapDepartmentDomainModelToEntity(departmentDomainModel)
-            )
+        departmentRepository.updateDepartment(
+            departmentMapper.mapDepartmentDomainModelToEntity(departmentDomainModel)
+        )
     }
 
 }

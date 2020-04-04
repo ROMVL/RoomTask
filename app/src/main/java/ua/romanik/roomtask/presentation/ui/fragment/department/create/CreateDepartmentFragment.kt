@@ -50,7 +50,7 @@ class CreateDepartmentFragment : BaseFragment<CreateDepartmentViewModel>(R.layou
             }
             is DepartmentNavigation.UpdateDepartment -> {
                 tvTitle.initText(R.string.update_department)
-                (args.navigation as DepartmentNavigation.UpdateDepartment).departmentDomainModel.let { department ->
+                (args.navigation as? DepartmentNavigation.UpdateDepartment)?.departmentDomainModel?.let { department ->
                     etName.initText(department.name)
                     etDescription.initText(department.description)
                     btnDone.setOnClickListener {
@@ -94,20 +94,16 @@ class CreateDepartmentFragment : BaseFragment<CreateDepartmentViewModel>(R.layou
             roomSpinnerAdapter.clear()
             roomSpinnerAdapter.addAll(value)
         }
-        if (args.navigation is DepartmentNavigation.UpdateDepartment) {
-            (args.navigation as DepartmentNavigation.UpdateDepartment).departmentDomainModel.roomId.let { roomId ->
-                rooms.indexOfFirst { roomDomainModel ->
-                    roomDomainModel.id == roomId
-                }.let { indexOfSelectedItem ->
-                    spinnerRoom.setSelection(indexOfSelectedItem, true)
-                }
+        (args.navigation as? DepartmentNavigation.UpdateDepartment)?.departmentDomainModel?.roomId?.let { roomId ->
+            rooms.indexOfFirst { roomDomainModel ->
+                roomDomainModel.id == roomId
+            }.let { indexOfSelectedItem ->
+                spinnerRoom.setSelection(indexOfSelectedItem, true)
             }
         }
     }
 
     private fun initDepartmentSpinner() {
-        with(spinnerRoom) {
-            adapter = roomSpinnerAdapter
-        }
+        spinnerRoom.adapter = roomSpinnerAdapter
     }
 }
