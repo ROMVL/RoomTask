@@ -8,6 +8,7 @@ import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_room.view.*
 import ua.romanik.roomtask.R
 import ua.romanik.roomtask.domain.model.room.RoomDomainModel
@@ -42,7 +43,9 @@ class RoomAdapter(
         holder.onBind(getItem(position))
     }
 
-    inner class RoomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class RoomViewHolder(
+        override val containerView: View
+    ) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
         fun onBind(roomDomainModel: RoomDomainModel) {
             with(itemView) {
@@ -56,7 +59,7 @@ class RoomAdapter(
                 gravity = Gravity.END
                 menuInflater.inflate(R.menu.menu_item, menu)
                 setOnMenuItemClickListener {
-                    when(it.itemId) {
+                    when (it.itemId) {
                         R.id.itemUpdate -> {
                             updateOnClickListener(roomDomainModel)
                             true

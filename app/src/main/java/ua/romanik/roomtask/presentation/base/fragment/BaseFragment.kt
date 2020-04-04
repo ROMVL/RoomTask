@@ -24,15 +24,27 @@ abstract class BaseFragment<T : BaseViewModel>(@LayoutRes val layout: Int) : Fra
         with(viewModel) {
             errorLiveEvent.observe(
                 this@BaseFragment.viewLifecycleOwner,
-                Observer { showError(it.content.message) }
+                Observer { event ->
+                    event.getContentIfNotHandled()?.let {
+                        showError(it.message)
+                    }
+                }
             )
             navigationLiveEvent.observe(
                 this@BaseFragment.viewLifecycleOwner,
-                Observer { handleNavigationEvent(it.content) }
+                Observer { event ->
+                    event.getContentIfNotHandled()?.let {
+                        handleNavigationEvent(it)
+                    }
+                }
             )
             loadingStateLiveEvent.observe(
                 this@BaseFragment.viewLifecycleOwner,
-                Observer { handleLoadingStateEvent(it.content) }
+                Observer { event ->
+                    event.getContentIfNotHandled()?.let {
+                        handleLoadingStateEvent(it)
+                    }
+                }
             )
         }
     }

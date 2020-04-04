@@ -2,12 +2,11 @@ package ua.romanik.roomtask.presentation.base
 
 import android.app.Activity
 import android.content.Context
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.annotation.StringRes
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
@@ -45,7 +44,7 @@ fun View.goneIf(predicate: () -> Boolean) {
 }
 
 fun TextView.initText(@StringRes value: Int) {
-    text = context.getString(value)
+    setText(value)
 }
 
 fun TextView.initText(value: String) {
@@ -59,16 +58,8 @@ fun TextView.initText(value: Number) {
 @ExperimentalCoroutinesApi
 fun TextView.textChanges(): Flow<CharSequence> = channelFlow {
     offer(text)
-    val listener = createTextListener { if (isActive) offer(it) }
-    addTextChangedListener(listener)
+    val listener = addTextChangedListener {
+        if (isActive) offer(it?.toString() ?: "")
+    }
     awaitClose { removeTextChangedListener(listener) }
-}
-
-fun createTextListener(emit: (CharSequence) -> Unit) = object : TextWatcher {
-    override fun afterTextChanged(s: Editable) = Unit
-
-    override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) = Unit
-
-    override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) = emit(s)
-
 }

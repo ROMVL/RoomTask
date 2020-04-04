@@ -1,12 +1,8 @@
 package ua.romanik.roomtask.presentation.ui.fragment.department.list
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onCompletion
-import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import ua.romanik.roomtask.domain.model.department.DepartmentDomainModel
 import ua.romanik.roomtask.domain.usecase.DeleteDepartmentUseCase
@@ -17,7 +13,7 @@ import ua.romanik.roomtask.presentation.ui.fragment.department.navigation.Depart
 
 @ExperimentalCoroutinesApi
 class DepartmentListViewModel(
-    private val fetchDepartmentsUseCase: FetchDepartmentsUseCase,
+    fetchDepartmentsUseCase: FetchDepartmentsUseCase,
     private val deleteDepartmentUseCase: DeleteDepartmentUseCase
 ) : BaseViewModel() {
 

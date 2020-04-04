@@ -8,6 +8,7 @@ import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_department.view.*
 import ua.romanik.roomtask.R
 import ua.romanik.roomtask.domain.model.department.DepartmentDomainModel
@@ -48,7 +49,9 @@ class DepartmentAdapter(
         holder.onBind(getItem(position))
     }
 
-    inner class DepartmentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class DepartmentViewHolder(
+        override val containerView: View
+    ) : RecyclerView.ViewHolder(containerView), LayoutContainer {
         fun onBind(departmentDomainModel: DepartmentDomainModel) {
             with(itemView) {
                 setOnClickListener { itemClickListener(departmentDomainModel) }
